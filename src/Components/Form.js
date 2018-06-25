@@ -41,7 +41,7 @@ export default class Form extends Component {
 
     removeInput = (id) => () => {
         if (this.state.inputs.length === 1) {
-            alert('This is the last input in the form, you cannot delete it.');
+            alert('This is the last input, you cannot delete it.');
             return;
         }
         const filteredInputs = this.state.inputs.filter((input) => {
