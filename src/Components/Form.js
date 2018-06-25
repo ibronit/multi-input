@@ -1,29 +1,66 @@
 import React, { Component } from 'react';
 import Input from './Input';
 
+let id = 0;
 /** propTypes */
 export default class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputs: [{ value: '' }]
+            inputs: [{ id: ++id, value: '' }]
         };
         this.addInput = this.addInput.bind(this);
+        this.editInput = this.editInput.bind(this);
+        this.removeInput = this.removeInput.bind(this);
     }
 
-    addInput = (index) => (evt) => {
-        if (((this.state.inputs.length - 1) === index) && evt.target.value) {
+    addInput = (id) => (evt) => {
+        const lastId = this.state.inputs.reduce(function (prev, cur) {
+            return prev.id > cur.id ? prev : cur;
+        });        
+        if ((lastId.id === id) && evt.target.value) {
             this.setState({
-                inputs: this.state.inputs.concat({ value: '' })
+                inputs: this.state.inputs.concat({ id: ++id, value: '' })
             });
         }
     }
 
+    editInput = (id) => (evt) => {
+        const editedInputs = this.state.inputs.map((input) => {
+            if (input.id === id) {
+                return { ...input, value: evt.target.value };
+            }
+            return input;
+        });
+        this.setState({
+            inputs: editedInputs
+        });
+    }
+
+    removeInput = (id) => () => {
+        if (this.state.inputs.length === 1) {
+            alert('This is the last input in the form, you cannot delete it.');
+            return;
+        }
+        const filteredInputs = this.state.inputs.filter((input) => {
+            return id !== input.id;
+        });
+        this.setState({
+            inputs: filteredInputs
+        });
+    }
+
     render() {
-        console.log(this.state.inputs);
-        const inputs = this.state.inputs.map((input, index) => {
+        const inputs = this.state.inputs.map((input) => {
             return (
-                <Input addInput={this.addInput(index)} id={index} value={input.value} key={index} />
+                <Input
+                    addInput={this.addInput(input.id)}
+                    editInput={this.editInput(input.id)}
+                    removeInput={this.removeInput(input.id)}
+                    id={input.id}
+                    value={input.value}
+                    key={input.id}
+                />
             )
         });
 

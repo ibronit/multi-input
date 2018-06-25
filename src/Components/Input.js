@@ -10,11 +10,12 @@ export default class Input extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(evt) {
+    handleChange(evt) {        
         this.setState({
             value: evt.target.value
         });
-
+        
+        this.props.editInput(evt);
         this.props.addInput(evt);
     }
 
@@ -23,7 +24,8 @@ export default class Input extends Component {
             <div className="row">
                 <div className="input-field col s4 push-s4">
                     <input id={"input-" + this.props.id} onChange={this.handleChange} type="text" value={this.state.value} className="validate" />
-                    <label for={"input-" + this.props.id}>Write something...</label>
+                    <label htmlFor={"input-" + this.props.id}>Write something...</label>
+                    <i onClick={this.props.removeInput} className="material-icons prefix clickable">clear</i>
                 </div>
             </div>
         );
