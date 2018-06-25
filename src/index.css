@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+button {
+  margin-left: 5px;
+}
+
 .clickable {
   cursor: pointer;
 }
