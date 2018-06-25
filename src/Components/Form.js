@@ -80,7 +80,7 @@ export default class Form extends Component {
             <form>
                 {inputs}
                 <div className="row">
-                    <div className="col s2 offset-s6">
+                    <div className="col s12">
                         <button className="waves-effect waves-light btn" onClick={this.handleCancel} name="cancel">Cancel</button>
                         <button className="waves-effect waves-light btn" onClick={this.handleSubmit} type="submit" name="submit">Submit</button>
                     </div>

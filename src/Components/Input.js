@@ -22,7 +22,7 @@ export default class Input extends Component {
     render() {
         return (
             <div className="row">
-                <div className="input-field col s4 push-s4">
+                <div className="input-field col s12">
                     <input id={"input-" + this.props.id} onChange={this.handleChange} type="text" value={this.state.value} className="validate" />
                     <label htmlFor={"input-" + this.props.id}>Write something...</label>
                     <i onClick={this.props.removeInput} className="material-icons prefix clickable">clear</i>
