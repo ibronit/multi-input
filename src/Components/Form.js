@@ -23,9 +23,7 @@ export default class Form extends Component {
         console.log(this.state.inputs);
         const inputs = this.state.inputs.map((input, index) => {
             return (
-                <div key={index}>
-                    <Input addInput={this.addInput(index)} value={input.value} key={index} />
-                </div>
+                <Input addInput={this.addInput(index)} id={index} value={input.value} key={index} />
             )
         });
 

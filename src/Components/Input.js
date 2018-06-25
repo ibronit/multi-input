@@ -20,7 +20,12 @@ export default class Input extends Component {
 
     render() {
         return (
-            <input onChange={this.handleChange} type="text" value={this.state.value} placeholder="Write something..." />
+            <div className="row">
+                <div className="input-field col s4 push-s4">
+                    <input id={"input-" + this.props.id} onChange={this.handleChange} type="text" value={this.state.value} className="validate" />
+                    <label for={"input-" + this.props.id}>Write something...</label>
+                </div>
+            </div>
         );
     }
 }
